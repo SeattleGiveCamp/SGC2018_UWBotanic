@@ -147,9 +147,9 @@ Updated October 24, 2013--%>
         <HeaderStyle BackColor="Gainsboro" Font-Bold="True" ForeColor="Black" CssClass="headerpadding" />
     </asp:GridView>
     <asp:SqlDataSource ID="sqldatasrcRequests" runat="server" ConnectionString="<%$ ConnectionStrings:WORM2007 %>"
-        DeleteCommand="DELETE FROM [VolunteerRequests] WHERE [ID] = ?" InsertCommand="INSERT INTO [VolunteerRequests] ([ID], [EO_ID], [Vol_ID], [VolName], [Preference], [County], [Species], [EO_Num], [FieldPartner], [Comments], [ToBeSubmitted]) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+        DeleteCommand="DELETE FROM [VolunteerRequests] WHERE [ID] = @ID" InsertCommand="INSERT INTO [VolunteerRequests] ([ID], [EO_ID], [Vol_ID], [VolName], [Preference], [County], [Species], [EO_Num], [FieldPartner], [Comments], [ToBeSubmitted]) VALUES (@ID, @EO_ID, @Vol_ID, @VolName, @Preference, @County, @Species, @EO_Num, @FieldPartner, @Comments, @ToBeSubmitted)"
         ProviderName="<%$ ConnectionStrings:WORM2007.ProviderName %>" SelectCommand="SELECT * FROM [VolunteerRequests] WHERE ([Vol_ID] = ?) ORDER BY [SubmissionDate] DESC, [Preference]"
-        UpdateCommand="UPDATE [VolunteerRequests] SET [Preference] = ?, [FieldPartner] = ?, [Comments] = ?, [ToBeSubmitted] = ? WHERE [ID] = ?">
+        UpdateCommand="UPDATE [VolunteerRequests] SET [Preference] = @Preference, [FieldPartner] = @FieldPartner, [Comments] = @Comments, [ToBeSubmitted] = @ToBeSubmitted WHERE [ID] = @ID">
         <SelectParameters>
             <asp:SessionParameter Name="Vol_ID" SessionField="VolID" Type="Int32" />
         </SelectParameters>
