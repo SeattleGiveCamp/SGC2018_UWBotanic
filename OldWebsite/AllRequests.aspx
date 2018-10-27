@@ -85,11 +85,11 @@ Updated September 24, 2013--%>
     </asp:GridView>
     
     <asp:SqlDataSource ID="sqldatasrcRequests" runat="server" ConnectionString="<%$ ConnectionStrings:WORM2007 %>"
-        DeleteCommand="DELETE FROM [VolunteerRequests] WHERE [ID] = ?"
-        InsertCommand="INSERT INTO [VolunteerRequests] ([ID], [EO_ID], [Vol_ID], [VolName], [Preference], [County], [Species], [EO_Num], [FieldPartner], [Comments]) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+        DeleteCommand="DELETE FROM [VolunteerRequests] WHERE [ID] = @ID"
+        InsertCommand="INSERT INTO [VolunteerRequests] ([ID], [EO_ID], [Vol_ID], [VolName], [Preference], [County], [Species], [EO_Num], [FieldPartner], [Comments]) VALUES (@ID, @EO_ID, @Vol_ID, @VolName, @Preference, @County, @Species, @EO_Num, @FieldPartner, @Comments)"
         ProviderName="<%$ ConnectionStrings:WORM2007.ProviderName %>"
-        SelectCommand="SELECT * FROM [VolunteerRequests] WHERE [Assigned] = True"
-        UpdateCommand="UPDATE [VolunteerRequests] SET [Preference] = ?, [FieldPartner] = ?, [Comments] = ? WHERE [ID] = ?">
+        SelectCommand="SELECT * FROM [VolunteerRequests] WHERE [Assigned] = 'True'"
+        UpdateCommand="UPDATE [VolunteerRequests] SET [Preference] = @Preference, [FieldPartner] = @FieldPartner, [Comments] = @Comments WHERE [ID] = @ID">
         
         <DeleteParameters>
             <asp:Parameter Name="ID" Type="Int32" />
