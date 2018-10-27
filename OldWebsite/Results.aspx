@@ -41,7 +41,10 @@ Updated October 25, 2013--%>
         Volunteer ID:&nbsp;<asp:Label ID="lblVolID" runat="server" Text="ID"></asp:Label></p>
 
     
-    <asp:GridView ID="grdvwResults" runat="server" AutoGenerateColumns="False" DataSourceID="accessdatasrcVolRequests" CellPadding="4" ForeColor="#333333" GridLines="None" AllowSorting="True" OnSelectedIndexChanged="grdvwResults_SelectedIndexChanged" DataKeyNames="EO_ID" Width="990px" OnRowDataBound="grdvwResults_RowDataBound">
+    <asp:GridView ID="grdvwResults" runat="server" AutoGenerateColumns="False" 
+        DataSourceID="accessdatasrcVolRequests" CellPadding="4" ForeColor="#333333" 
+        GridLines="None" AllowSorting="True" OnSelectedIndexChanged="grdvwResults_SelectedIndexChanged" 
+        DataKeyNames="EO_ID" Width="990px" OnRowDataBound="grdvwResults_RowDataBound">
         <Columns>
             <asp:CommandField ShowSelectButton="True" />
             <asp:BoundField DataField="EO_ID" HeaderText="EO_ID" SortExpression="EO_ID" Visible="False" />
@@ -80,7 +83,17 @@ Updated October 25, 2013--%>
         <AlternatingRowStyle BackColor="White" />
     </asp:GridView>
     <asp:SqlDataSource ID="accessdatasrcVolRequests" runat="server" ConnectionString="<%$ ConnectionStrings:WORM2007 %>"
-        ProviderName="<%$ ConnectionStrings:WORM2007.ProviderName %>" SelectCommand="SELECT [EO_ID], [COUNTIES], [Phenology], [Taxonomy], [Species], [EO_Num], [Priority], [LAST_OBS], [SURVEY_DATE], [PRECISION], [SURVEY_SITES], [MA_NAMES], [TRS] FROM [VolunteerOpportunities] WHERE ([Species] LIKE ?) AND ([COUNTIES] LIKE ? OR [COUNTIES] LIKE ? OR [COUNTIES] LIKE ? OR [COUNTIES] LIKE ? OR [COUNTIES] LIKE ? OR [COUNTIES] LIKE ? OR [COUNTIES] LIKE ? OR [COUNTIES] LIKE ? OR [COUNTIES] LIKE ? OR [COUNTIES] LIKE ? OR [COUNTIES] LIKE ? OR [COUNTIES] LIKE ? OR [COUNTIES] LIKE ? OR [COUNTIES] LIKE ? OR [COUNTIES] LIKE ? OR [COUNTIES] LIKE ? OR [COUNTIES] LIKE ? OR [COUNTIES] LIKE ? OR [COUNTIES] LIKE ? OR [COUNTIES] LIKE ? OR [COUNTIES] LIKE ? OR [COUNTIES] LIKE ? OR [COUNTIES] LIKE ? OR [COUNTIES] LIKE ? OR [COUNTIES] LIKE ? OR [COUNTIES] LIKE ? OR [COUNTIES] LIKE ? OR [COUNTIES] LIKE ? OR [COUNTIES] LIKE ? OR [COUNTIES] LIKE ? OR [COUNTIES] LIKE ? OR [COUNTIES] LIKE ? OR [COUNTIES] LIKE ? OR [COUNTIES] LIKE ? OR [COUNTIES] LIKE ? OR [COUNTIES] LIKE ? OR [COUNTIES] LIKE ? OR [COUNTIES] LIKE ? OR [COUNTIES] LIKE ?) AND ([Taxonomy] LIKE ?) AND ([Phenology] LIKE ? OR [Phenology] LIKE ? OR [Phenology] LIKE ? OR [Phenology] LIKE ? OR [Phenology] LIKE ? OR [Phenology] LIKE ? OR [Phenology] LIKE ? OR [Phenology] LIKE ? OR [Phenology] LIKE ? OR [Phenology] LIKE ? OR [Phenology] LIKE ? OR [Phenology] LIKE ? OR [Phenology] LIKE ?) AND ([Priority] LIKE ?) AND [NotonWeb] = FALSE ORDER BY IIF([Priority]= 'Highest',1,IIF([Priority]= 'Medium',2,IIF([Priority]= 'Lower',3,4)))">
+        ProviderName="<%$ ConnectionStrings:WORM2007.ProviderName %>" 
+        SelectCommand="SELECT [EO_ID], [COUNTIES], [Phenology], [Taxonomy], [Species], 
+        [EO_Num], [Priority], [LAST_OBS], [SURVEY_DATE], [PRECISION], [SURVEY_SITES], 
+        [MA_NAMES], [TRS] FROM [VolunteerOpportunities] WHERE ([Species] = @Species) AND 
+        [COUNTIES] LIKE ? AND [Taxonomy] LIKE ? AND [Phenology] LIKE ? 
+        AND [Priority] LIKE ? AND [NotonWeb] = FALSE 
+        ORDER BY  CASE [Priority]     
+        WHEN 'Highest' THEN 1     \
+        WHEN 'Medium' THEN 2    
+        WHEN 'Lower' THEN 3     
+        ELSE 4 END">
         <SelectParameters>
             <asp:SessionParameter Name="Species" SessionField="Species" Type="String" />
             <asp:SessionParameter Name="Adams" SessionField="Adams" Type="String" />

@@ -32,9 +32,10 @@ Updated October 22, 2013--%>
         <asp:DropDownList ID="listContact" runat="server" DataSourceID="accessdatasrcWORMVol" AppendDataBoundItems="false" DataTextField="ListItem" DataValueField="PersonID" Width="145px">
         </asp:DropDownList>
         <asp:SQLDataSource ID="accessdatasrcWORMVol" runat="server"
-            ConnectionString="<%$ ConnectionStrings:WORM2007 %>" ProviderName="<%$ ConnectionStrings:WORM2007.ProviderName %>" SelectCommand="SELECT [PersonID], [FirstName] + ' ' + [LastName] AS ListItem FROM [Person] WHERE ([LastName] = ? AND [Volunteer] = True And Active = True And (Monitor = True Or AssistantMonitor = True))">
+            ConnectionString="<%$ ConnectionStrings:WORM2007 %>" ProviderName="<%$ ConnectionStrings:WORM2007.ProviderName %>" 
+            SelectCommand="SELECT [PersonID], [FirstName] + ' ' + [LastName] AS ListItem FROM [Person] WHERE ([LastName] = @LastName AND [Volunteer] = 'True' And Active = 'True' And (Monitor = 'True' Or AssistantMonitor = 'True'))">
             <SelectParameters>
-                <asp:ControlParameter ControlID="txtLastName" Name="Org" PropertyName="Text"
+                <asp:ControlParameter ControlID="txtLastName" Name="LastName" PropertyName="Text"
                     Type="String" />
             </SelectParameters>
         </asp:SQLDataSource>
