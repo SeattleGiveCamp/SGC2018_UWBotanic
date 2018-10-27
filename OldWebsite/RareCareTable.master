@@ -1,0 +1,207 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="RareCareTable.master.cs" Inherits="RareCare" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+    <title>Rare Care Database</title>
+
+	<link href="https://depts.washington.edu/uwbg/style.css" rel="stylesheet" type="text/css"></link>
+    
+    <%--A set of styles are necessary for link colors, these were in the body tag which is deprecated--%>
+    <%--A style was also necessary to hide Gridview columns that provide data--%>
+    <style type="text/css">
+        
+        .hidden { display:none }
+        
+        .headerpadding th { padding: 5px }
+                        
+    </style>
+    
+    <%--This script prevents link buttons from opening new windows if necessary--%>
+    <script type="text/javascript">
+    function fixform() {
+        if (typeof opener != 'undefined')
+        {
+            if (opener.document.getElementById("aspnetForm").target != "_blank") return;
+            opener.document.getElementById("aspnetForm").target = "";
+            opener.document.getElementById("aspnetForm").action = opener.location.href;
+            }
+    }
+</script>
+    
+    
+</head>
+<body id="rareCare" onload="fixform()">
+
+
+
+<%--UWBG Rare Care Database Search web application
+Provided by David Campbell
+
+Table oriented ASP.NET Master page
+Updated March 26, 2015--%>
+
+
+
+
+
+    <form id="frmRareCare" runat="server">
+    
+
+	<div id="head_wrapper" style="max-width: 1400px; width: 1400px">  
+			<div id="uwHeader">
+ 				<a href="https://www.washington.edu/"><img src="https://depts.washington.edu/uwbg/images/UW_W-Logo.png" width="30" height="20" alt="UW logo"></a> 
+  <ul class="horizontal right">
+    <li><a href="http://www.washington.edu/">UW Home</a></li>
+    <li><a href="http://myuw.washington.edu/">MyUW</a></li>
+    <li><a href="http://www.washington.edu/home/directories.html">UW Directories</a></li>
+    <li><a href="http://www.washington.edu/maps/">UW Maps</a></li>
+  </ul>
+			</div>
+      		<div class="clear_float"></div>
+
+<div id="UWBG_header" style="height: 140px"><h1 class="hide">University of Washington Botanic Gardens</h1>
+  <a href="http://depts.washington.edu/uwbg/index.php"><img src="https://depts.washington.edu/uwbg/images/uwbgLogo340px.gif" width="340" height="89" alt="logo"></a> <span id="tag" style="position: absolute; top: 120px; left: 10px">
+  <p><a href="http://depts.washington.edu/uwbg/gardens/wpa.shtml">Washington Park Arboretum</a> <br>
+    <a href="http://depts.washington.edu/uwbg/visit/cuh.php">Center for Urban Horticulture</a></p>
+  </span>
+ 
+  <div id="utility" style="position: absolute; top: 50px; left: 1150px">
+ 
+    <ul>
+      <li><a href="http://depts.washington.edu/uwbg/support/donate.shtml">MAKE A GIFT NOW</a></li>
+      <li><a href="http://depts.washington.edu/uwbg/visit/calendar.shtml">CLASSES + EVENTS</a></li>
+      <li><a href="http://depts.washington.edu/uwbg/visit/rentals.shtml">FACILITY RENTALS</a></li>
+      <li>FOLLOW US <a href="http://depts.washington.edu/uwbg/news/feed/"><img src="https://depts.washington.edu/uwbg/images/icons/feed.png" width="16" height="16" alt="RSS feed icon" title="Subscribe to the staff blog."></a> <a href="http://depts.washington.edu/uwbg/about/news_archive.php"><img src="https://depts.washington.edu/uwbg/images/icons/uwbg_cone.png" width="16" height="16" alt="E-Flora newsletter sign-up." title="Sign up for our monthly e-newsletter"></a><a href="http://www.facebook.com/UWBotanicGardens"> <img src="https://depts.washington.edu/uwbg/images/icons/facebook.png" width="16" height="16" alt="facebook icon" title="Become a fan on Facebook."></a>  <a href="http://www.flickr.com/groups/uwbotanicgardens/pool/"><img src="https://depts.washington.edu/uwbg/images/icons/flickr.png" width="16" height="16" alt="flickr icon" title="Join our Flickr Pool"></a> <a href="http://twitter.com/uwbotanicgarden"><img src="https://depts.washington.edu/uwbg/images/icons/twitter.png" width="16" height="16" alt="twitter icon" title="Follow us on Twitter"></a> <a href="http://pinterest.com/uwbotanicgarden/"><img src="https://depts.washington.edu/uwbg/images/icons/pinterest.png" width="16" height="16" alt="pinterest" title="check out our boards!"></a></li>
+
+<li>206-543-8616 | <a href="mailto:uwbg@uw.edu">uwbg@uw.edu</a><span id="no_print"> | <a href="http://depts.washington.edu/uwbg/visit/directions.shtml">directions</a> </span>
+    </li></ul>
+
+
+    <div class="clear_float"> </div>
+  </div>
+</div>
+</div>
+
+<div id="container" style="max-width: 1400px; width: 1400px">
+
+            
+		<div id="section_navigation" style="float: left; width: 230px">
+			<!--#include virtual="sectionNavigationConf.html" -->
+		</div>
+
+	
+              
+        
+        <%--A division with styles is necessary to format the text on the ASP.NET pages--%>
+        <div style="float: left; width: 1000px; padding-left: 20px; font-family: Arial, Helvetica, Sans-Serif; font-size: small">
+
+		<DIV align=center><FONT face="Arial, Helvetica, sans-serif" 
+            color=#003366 size=5><a name="BacktoTop"></a>Washington Rare Plant Care and Conservation</FONT><br /><br /></DIV>
+
+        	<asp:contentplaceholder id="contentRareCare" runat="server">
+        
+        	</asp:contentplaceholder>
+        </div>
+	<div style="clear: both"></div>
+     
+    </form>
+
+		<div id="footer" style="width: 1400px">
+<p id="site_map"><a href="http://depts.washington.edu/uwbg/index.php">Explore the UW Botanic Gardens</a> </p>
+<ul id="top-nav">   <li class="home"><a href="http://depts.washington.edu/uwbg/index.php">Home</a></li>   
+<li class="education"><a href="http://depts.washington.edu/uwbg/education.shtml" class="arrow">Education</a>      
+<ul class="arrow-pad">         
+<li><a href="http://depts.washington.edu/uwbg/education/classes.php">Classes for the Public</a></li>
+      <li><a href="http://depts.washington.edu/uwbg/education/students.php">Academic Programs &amp; Opportunities</a></li>         
+      <li><a href="http://depts.washington.edu/uwbg/education/prohort.php" title="Click for ProHort, conferences and workshops" class="arrow">Professional</a>
+        <ul>
+          <li><a href="http://depts.washington.edu/uwbg/education/prohort.php">ProHort</a></li>
+          <li><a href="http://depts.washington.edu/uwbg/news/urban-forest/">Urban Forest Symposium</a></li>
+          <li><a href="http://depts.washington.edu/uwbg/education/conferences/2014InvPlants/InvPlants2014.shtml">Invasive Plants Conference</a></li>
+          <li><a href="http://depts.washington.edu/uwbg/education/sustainable_sites.php">Sustainable Sites Initiative</a></li>
+          <li><a href="http://depts.washington.edu/uwbg/education/stormwater.shtml">Rain Garden &amp; Stormwater Workshops</a></li>
+          <li><a href="http://depts.washington.edu/uwbg/news/food-security/">Food Security Conference</a></li>
+          <li><a href="http://depts.washington.edu/uwbg/research/plant-biodiversity-2012.shtml">Conserving Plant Biodiversity Conference</a></li>
+        </ul>
+</li>
+      <li><a href="http://depts.washington.edu/uwbg/education/school_youth.shtml">K-12 Teachers</a></li>
+      <li><a href="http://depts.washington.edu/uwbg/education/family.php" class="arrow">Youth &amp; Family Programs</a>            
+        <ul> <li><a href="http://depts.washington.edu/hortlib/calendar/story_time.shtml">Story Time</a></li>               
+          <li><a href="http://depts.washington.edu/uwbg/education/Youth/summer.shtml">Summer Camp</a></li>
+          <li><a href="http://depts.washington.edu/uwbg/education/Youth/parent.shtml">Family Nature Classes</a></li>
+          <li><a href="http://depts.washington.edu/uwbg/education/Youth/nature_preschool.shtml">Nature Preschool</a></li>               
+          <li><a href="http://depts.washington.edu/uwbg/visit/tours.shtml">Walks &amp; Tours</a></li>               
+          <li><a href="http://depts.washington.edu/uwbg/education/Youth/packs.shtml">Self-Guided Adventures</a></li>            
+        </ul>
+      </li>                 
+      <li><a href="http://depts.washington.edu/hydeherb/index.shtml">Hyde Herbarium &amp; Plant ID</a></li>        
+       <li><a href="http://depts.washington.edu/hortlib/index.shtml">Elisabeth C. Miller Library</a></li>         
+       <li><a href="http://depts.washington.edu/hortlib/collections/pal.shtml">Plant Answer Line</a></li>      
+       </ul> </li>   <li class="research"><a href="http://depts.washington.edu/uwbg/research.php" class="arrow">Research &amp; Science</a>     
+        <ul>         <li><a href="http://depts.washington.edu/uwbg/research/faculty.shtml">Faculty</a></li>
+          <li><a href="http://depts.washington.edu/uwbg/research/theses.shtml">Theses &amp; Student Projects</a></li>        
+         <li><a href="http://depts.washington.edu/uwbg/rarecare/index.shtml">Rare Plant Care &amp; Conservation</a></li>
+         <li><a href="http://depts.washington.edu/uwbg/education/conferences/2014InvPlants/InvPlants2014.shtml">2014 Invasive Plants Conference</a></li>         
+      <li><a href="http://depts.washington.edu/uwbg/research/ubna.shtml">Union Bay Natural Area</a></li>       
+        <li><a href="http://depts.washington.edu/uwren/">Restoration Ecology Network</a></li>      
+  </ul>   </li>   
+        <li class="visit"><a href="http://depts.washington.edu/uwbg/visit_hours.shtml" class="arrow">Visit</a>      
+        <ul class="arrow-pad">         <li><a href="http://depts.washington.edu/uwbg/visit_hours.shtml#hours">Hours</a></li>        
+         <li><a href="http://depts.washington.edu/uwbg/visit/directions.shtml">Directions and Maps</a></li>        
+          <li><a href="http://depts.washington.edu/uwbg/visit/tours.shtml">Tours</a></li>        
+     <li><a href="http://depts.washington.edu/uwbg/visit/rentals.shtml">Facility Rentals for Events</a></li>        
+               <li><a href="http://depts.washington.edu/uwbg/gardens/wpa.shtml">Washington Park Arboretum</a></li>         
+               <li><a href="http://depts.washington.edu/uwbg/visit/cuh.php">Center for Urban Horticulture</a></li>         
+               <li><a href="http://depts.washington.edu/uwbg/research/ubna.shtml">Union Bay Natural Area</a></li>        
+                <li><a href="http://depts.washington.edu/hortlib/index.shtml">Elisabeth C. Miller Library</a></li>        
+                 <li><a href="http://depts.washington.edu/uwbg/visit/calendar.shtml">Events Calendar</a></li>      
+                 </ul>   </li>   
+                 <li class="gardens"><a href="http://depts.washington.edu/uwbg/gardens.shtml" class="arrow">Gardens</a>      
+                 <ul class="arrow-pad">        
+                  <li><a href="http://depts.washington.edu/uwbg/news/horticulture/">Horticulture Updates</a></li>         
+                  <li><a href="http://depts.washington.edu/uwbg/news/highlights/">Seasonal Highlights</a></li>         
+                  <li><a href="http://depts.washington.edu/uwbg/news/plant-profiles/">Plant Profiles</a></li>
+                  <li><a href="http://depts.washington.edu/uwbg/gardens/BGBase.php">Living Collections Database</a></li>
+                  <li><a href="http://depts.washington.edu/uwbg/gardens/map.shtml">Interactive Map</a></li>        
+                   <li><a href="http://depts.washington.edu/uwbg/gardens/wpa.shtml" class="arrow">Washington Park Arboretum</a>          
+                     <ul>   <li><a href="http://depts.washington.edu/uwbg/gardens/wpa/collections.php">Plant Collections</a></li>              
+                      <li><a href="http://depts.washington.edu/uwbg/gardens/wpa/pacific_connections.shtml">Pacific Connections</a></li>               
+                      <li><a href="http://depts.washington.edu/uwbg/gardens/wpa/witt_winter.shtml">Witt Winter Garden</a></li>              
+                       <li><a href="http://depts.washington.edu/uwbg/gardens/wpa/woodland.shtml">Woodland Garden</a></li>              
+                        <li><a href="http://depts.washington.edu/uwbg/gardens/wpa/shoreline.shtml">Shoreline</a></li>           
+                  </ul> </li>        
+                           <li><a href="http://depts.washington.edu/uwbg/visit/cuh.php" class="arrow">Center for Urban Horticulture</a>           
+                            <ul>  <li><a href="http://depts.washington.edu/uwbg/gardens/cuh/soest.php">Soest Herbaceous Display Garden</a></li>               <li><a href="http://depts.washington.edu/uwbg/gardens/cuh/goodfellow_grove.shtml">Goodfellow Grove</a></li>               
+                            <li><a href="http://depts.washington.edu/uwbg/gardens/cuh/mcvay.shtml">McVay Courtyard</a></li>              
+ <li><a href="http://depts.washington.edu/uwbg/gardens/cuh/fragrance.shtml">Seattle Garden Club Fragrance Garden</a></li>            </ul>  </li><li><a href="http://food.washington.edu/farm">UW Urban Farm</a></li>   </ul>  </li>  
+                              <li class="support"><a href="http://depts.washington.edu/uwbg/support.shtml" class="arrow">Support Us</a>
+                                <ul>  <li><a href="http://depts.washington.edu/uwbg/support/donate.shtml">Give</a></li>        
+                              <li><a href="http://depts.washington.edu/uwbg/support/volunteer.php">Volunteer</a></li>        
+                               <li><a href="http://depts.washington.edu/uwbg/support/wishlist.shtml">Wish List</a></li>        
+                                <li><a href="http://depts.washington.edu/uwbg/support/organizations.shtml">Supporting Organizations</a></li>      
+                                </ul>   </li>      
+                                <li class="about"><a href="http://depts.washington.edu/uwbg/about.shtml" class="arrow">About Us</a>      <ul>        
+                                        
+                                 <li><a href="http://depts.washington.edu/uwbg/about/factsheet.shtml">Fact Sheet</a></li>         
+                                  <li><a href="http://depts.washington.edu/uwbg/about/master_plans.shtml">Policies, Plans &amp; History</a></li>        
+                                   <li><a href="http://depts.washington.edu/uwbg/about/faq.shtml">FAQ</a></li>        
+                                    <li><a href="http://depts.washington.edu/uwbg/about/news_archive.php">News Archive</a></li>         
+                                    <li><a href="http://depts.washington.edu/uwbg/about/contact.shtml">Contact Us</a></li>        
+                                     <li><a href="http://depts.washington.edu/uwbg/about/staff.shtml">Staff</a></li>         
+                                     <li><a href="http://depts.washington.edu/uwbg/docs/UWBG_Brochure.pdf">Brochure</a></li>        
+                                      <li><a href="http://depts.washington.edu/wpa/abgc/" title="Arboretum &amp; Botanical Garden Committee">ABGC</a></li>     
+            </ul>   
+            </li>
+
+	  
+            </ul>
+<div class="clear_float"> </div>
+
+<p id="uw"><a href="http://www.cfr.washington.edu/">School of Environmental and Forest Sciences</a>  | <a href="http://coenv.washington.edu/">College of the Environment</a></p>
+		</div> <!--footer-->
+
+	</div> <!--container-->
+</body>
+</html>
