@@ -338,7 +338,7 @@ Updated October 24, 2013--%>
             </ItemTemplate>
         </asp:FormView>
         <asp:SqlDataSource ID="accessdatasrcDetail" runat="server" ConnectionString="<%$ ConnectionStrings:WORM2007 %>"
-            ProviderName="<%$ ConnectionStrings:WORM2007.ProviderName %>" SelectCommand="SELECT VolunteerOpportunities.EO_ID, [Species], [EO_NUM], [COUNTIES], [ST_STAT], [PRECISION], VolunteerOpportunities.AssignmentNotes, [LAST_OBS], [SURVEY_DATE], [Phenology], [Taxonomy], [SURVEY_SITES], [QUADS], [MA_NAMES], [OWNER_CODE], [TRS], [MIN_ELEV], [SLOPE], [EO_DATA], [GEN_DESC], [Priority], [Latitude], [Longitude] FROM VolunteerOpportunities LEFT JOIN Alerts ON VolunteerOpportunities.EO_ID = Alerts.EO_ID WHERE (VolunteerOpportunities.EO_ID = ?)">
+            ProviderName="<%$ ConnectionStrings:WORM2007.ProviderName %>" SelectCommand="SELECT VolunteerOpportunities.EO_ID, [Species], [EO_NUM], [COUNTIES], [ST_STAT], [PRECISION], VolunteerOpportunities.AssignmentNotes, [LAST_OBS], [SURVEY_DATE], [Phenology], [Taxonomy], [SURVEY_SITES], [QUADS], [MA_NAMES], [OWNER_CODE], [TRS], [MIN_ELEV], [SLOPE], [EO_DATA], [GEN_DESC], [Priority], [Latitude], [Longitude] FROM VolunteerOpportunities LEFT JOIN Alerts ON VolunteerOpportunities.EO_ID = Alerts.EO_ID WHERE (VolunteerOpportunities.EO_ID = @EO_ID)">
             <SelectParameters>
                 <asp:SessionParameter Name="EO_ID" SessionField="EO" Type="Double" />
             </SelectParameters>
