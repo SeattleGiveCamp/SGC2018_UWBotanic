@@ -161,12 +161,12 @@ public partial class Requests : System.Web.UI.Page
 
             //Enter submission dates for submitted items
             String strSubmitcommand = "UPDATE [VolunteerRequests] SET [SubmissionDate] = NOW(), [ToBeSubmitted] = 0 WHERE [ID] = @RequestID";
-            OleDbParameter paramID = new OleDbParameter();
+            SqlParameter paramID = new SqlParameter();
             paramID.ParameterName = "@RequestID";
             paramID.Value = grdvwSubmit.Rows[i].Cells[1].Text;
             
                         
-            OleDbCommand cmdSubmit = new OleDbCommand(strSubmitcommand, conn);
+            SqlCommand cmdSubmit = new SqlCommand(strSubmitcommand, conn);
             cmdSubmit.Parameters.Add(paramID);
             
             
@@ -209,15 +209,15 @@ public partial class Requests : System.Web.UI.Page
         //Open WORM database to obtain Email from Person table for the volunteer
         
         String strcommand = "SELECT [Email] FROM [Person] WHERE [PersonID] = @VolID";
-        OleDbParameter param = new OleDbParameter();
+        SqlParameter param = new SqlParameter();
         param.ParameterName = "@VolID";
         param.Value = lblVolID.Text;        
         
-        OleDbCommand cmd = new OleDbCommand(strcommand, conn);
+        SqlCommand cmd = new SqlCommand(strcommand, conn);
         cmd.Parameters.Add(param);
 
         conn.Open();
-        OleDbDataReader reader;
+        SqlDataReader reader;
         reader = cmd.ExecuteReader();
 
         reader.Read();
@@ -408,16 +408,16 @@ public partial class Requests : System.Web.UI.Page
     {
         
         //Mark selected items not to be submitted and rebind the gridviews
-        String strconn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=F:/Webroot/CFRWeb/RareCare/Database/WORM.accdb;";
-        OleDbConnection conn = new OleDbConnection(strconn);
+        String strconn = System.Configuration.ConfigurationManager.ConnectionStrings["WORM2007"].ConnectionString;
+        System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(strconn);
 
-        
+
         String strRequestcommand = "UPDATE [VolunteerRequests] SET [ToBeSubmitted] = 0 WHERE [ID] = @ID";
-        OleDbParameter paramRequest = new OleDbParameter();
+        SqlParameter paramRequest = new SqlParameter();
         paramRequest.ParameterName = "@ID";
         paramRequest.Value = grdvwSubmit.SelectedDataKey.Values[0];
             
-        OleDbCommand cmdRequest = new OleDbCommand(strRequestcommand, conn);
+        SqlCommand cmdRequest = new SqlCommand(strRequestcommand, conn);
         cmdRequest.Parameters.Add(paramRequest);
             
 
