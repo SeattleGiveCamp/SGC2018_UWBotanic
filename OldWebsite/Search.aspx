@@ -177,7 +177,7 @@ Updated March 26, 2015--%>
             ID="ddlSpecies" runat="server" AutoPostBack="True" DataSourceID="accessdatasrcSpecies" DataTextField="Species" DataValueField="Species" Width="155px" AppendDataBoundItems="false">
             <asp:ListItem>No preference</asp:ListItem>
         </asp:DropDownList><asp:SqlDataSource ID="accessdatasrcSpecies" runat="server" ConnectionString="<%$ ConnectionStrings:WORM2007 %>"
-            ProviderName="<%$ ConnectionStrings:WORM2007.ProviderName %>" SelectCommand="SELECT DISTINCT [Species] FROM [VolunteerOpportunities] WHERE [Species] LIKE '%' + ? + '%' AND [Assigned] = FALSE ORDER BY [Species]">
+            ProviderName="<%$ ConnectionStrings:WORM2007.ProviderName %>" SelectCommand="SELECT DISTINCT [Species] FROM [VolunteerOpportunities] WHERE [Species] LIKE '%' + @Species + '%' AND [Assigned] = 'FALSE' ORDER BY [Species]">
             <SelectParameters>
                 <asp:ControlParameter ControlID="txtGenus" Name="Species" PropertyName="Text" Type="String" />
             </SelectParameters>
