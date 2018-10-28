@@ -148,7 +148,7 @@ Updated October 24, 2013--%>
     </asp:GridView>
     <asp:SqlDataSource ID="sqldatasrcRequests" runat="server" ConnectionString="<%$ ConnectionStrings:WORM2007 %>"
         DeleteCommand="DELETE FROM [VolunteerRequests] WHERE [ID] = @ID" InsertCommand="INSERT INTO [VolunteerRequests] ([ID], [EO_ID], [Vol_ID], [VolName], [Preference], [County], [Species], [EO_Num], [FieldPartner], [Comments], [ToBeSubmitted]) VALUES (@ID, @EO_ID, @Vol_ID, @VolName, @Preference, @County, @Species, @EO_Num, @FieldPartner, @Comments, @ToBeSubmitted)"
-        ProviderName="<%$ ConnectionStrings:WORM2007.ProviderName %>" SelectCommand="SELECT * FROM [VolunteerRequests] WHERE ([Vol_ID] = ?) ORDER BY [SubmissionDate] DESC, [Preference]"
+        ProviderName="<%$ ConnectionStrings:WORM2007.ProviderName %>" SelectCommand="SELECT * FROM [VolunteerRequests] WHERE ([Vol_ID] = @Vol_ID) ORDER BY [SubmissionDate] DESC, [Preference]"
         UpdateCommand="UPDATE [VolunteerRequests] SET [Preference] = @Preference, [FieldPartner] = @FieldPartner, [Comments] = @Comments, [ToBeSubmitted] = @ToBeSubmitted WHERE [ID] = @ID">
         <SelectParameters>
             <asp:SessionParameter Name="Vol_ID" SessionField="VolID" Type="Int32" />
@@ -263,9 +263,9 @@ Updated October 24, 2013--%>
     </asp:GridView>
     
     <asp:SqlDataSource ID="sqldatasrcSubmit" runat="server" ConnectionString="<%$ ConnectionStrings:WORM2007 %>"
-        DeleteCommand="DELETE FROM [VolunteerRequests] WHERE [ID] = ?" InsertCommand="INSERT INTO [VolunteerRequests] ([ID], [EO_ID], [Vol_ID], [VolName], [Preference], [County], [Species], [EO_Num], [FieldPartner], [Comments], [ToBeSubmitted]) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
-        ProviderName="<%$ ConnectionStrings:WORM2007.ProviderName %>" SelectCommand="SELECT * FROM [VolunteerRequests] WHERE ([Vol_ID] = ?) AND [ToBeSubmitted] = TRUE ORDER BY [Preference]"
-        UpdateCommand="UPDATE [VolunteerRequests] SET [Preference] = ?, [FieldPartner] = ?, [Comments] = ?, [ToBeSubmitted] = ? WHERE [ID] = ?">
+        DeleteCommand="DELETE FROM [VolunteerRequests] WHERE [ID] = @ID" InsertCommand="INSERT INTO [VolunteerRequests] ([ID], [EO_ID], [Vol_ID], [VolName], [Preference], [County], [Species], [EO_Num], [FieldPartner], [Comments], [ToBeSubmitted]) VALUES (@ID, @EO_ID, @Vol_ID, @VolName, @Preference, @County, @Species, @EO_Num, @FieldPartner, @Comments, @ToBeSubmitted)"
+        ProviderName="<%$ ConnectionStrings:WORM2007.ProviderName %>" SelectCommand="SELECT * FROM [VolunteerRequests] WHERE ([Vol_ID] = @Vol_ID) AND [ToBeSubmitted] = 'TRUE' ORDER BY [Preference]"
+        UpdateCommand="UPDATE [VolunteerRequests] SET [Preference] = @Preference, [FieldPartner] = @FieldPartner, [Comments] = @Comments, [ToBeSubmitted] = @ToBeSubmitted WHERE [ID] = @ID">
         <SelectParameters>
             <asp:SessionParameter Name="Vol_ID" SessionField="VolID" Type="Int32" />
         </SelectParameters>
