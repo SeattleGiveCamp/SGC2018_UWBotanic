@@ -41,10 +41,7 @@ Updated October 25, 2013--%>
         Volunteer ID:&nbsp;<asp:Label ID="lblVolID" runat="server" Text="ID"></asp:Label></p>
 
     
-    <asp:GridView ID="grdvwResults" runat="server" AutoGenerateColumns="False" 
-        DataSourceID="accessdatasrcVolRequests" CellPadding="4" ForeColor="#333333" 
-        GridLines="None" AllowSorting="True" OnSelectedIndexChanged="grdvwResults_SelectedIndexChanged" 
-        DataKeyNames="EO_ID" Width="990px" OnRowDataBound="grdvwResults_RowDataBound">
+    <asp:GridView ID="grdvwResults" runat="server" AutoGenerateColumns="False" DataSourceID="accessdatasrcVolRequests" CellPadding="4" ForeColor="#333333" GridLines="None" AllowSorting="True" OnSelectedIndexChanged="grdvwResults_SelectedIndexChanged" DataKeyNames="EO_ID" Width="990px" OnRowDataBound="grdvwResults_RowDataBound">
         <Columns>
             <asp:CommandField ShowSelectButton="True" />
             <asp:BoundField DataField="EO_ID" HeaderText="EO_ID" SortExpression="EO_ID" Visible="False" />
@@ -84,16 +81,7 @@ Updated October 25, 2013--%>
     </asp:GridView>
     <asp:SqlDataSource ID="accessdatasrcVolRequests" runat="server" ConnectionString="<%$ ConnectionStrings:WORM2007 %>"
         ProviderName="<%$ ConnectionStrings:WORM2007.ProviderName %>" 
-        SelectCommand="SELECT [EO_ID], [COUNTIES], [Phenology], [Taxonomy], [Species], 
-        [EO_Num], [Priority], [LAST_OBS], [SURVEY_DATE], [PRECISION], [SURVEY_SITES], 
-        [MA_NAMES], [TRS] FROM [VolunteerOpportunities] WHERE ([Species] = @Species) AND 
-        [COUNTIES] LIKE ? AND [Taxonomy] LIKE ? AND [Phenology] LIKE ? 
-        AND [Priority] LIKE ? AND [NotonWeb] = FALSE 
-        ORDER BY  CASE [Priority]     
-        WHEN 'Highest' THEN 1     \
-        WHEN 'Medium' THEN 2    
-        WHEN 'Lower' THEN 3     
-        ELSE 4 END">
+        SelectCommand="SELECT [EO_ID], [COUNTIES], [Phenology], [Taxonomy], [Species], [EO_Num], [Priority], [LAST_OBS], [SURVEY_DATE], [PRECISION], [SURVEY_SITES], [MA_NAMES], [TRS] FROM [VolunteerOpportunities] WHERE [Species] LIKE @Species AND ([COUNTIES] LIKE @Adams OR [COUNTIES] LIKE @Asotin OR [COUNTIES] LIKE @Benton OR [COUNTIES] LIKE @Chelan OR [COUNTIES] LIKE @Clallam OR [COUNTIES] LIKE @Clark OR [COUNTIES] LIKE @Columbia OR [COUNTIES] LIKE @Cowlitz OR [COUNTIES] LIKE @Douglas OR [COUNTIES] LIKE @Ferry OR [COUNTIES] LIKE @Franklin OR [COUNTIES] LIKE @Garfield OR [COUNTIES] LIKE @Grant OR [COUNTIES] LIKE @GraysHarbor OR [COUNTIES] LIKE @Island OR [COUNTIES] LIKE @Jefferson OR [COUNTIES] LIKE @King OR [COUNTIES] LIKE @Kitsap OR [COUNTIES] LIKE @Kittitas OR [COUNTIES] LIKE @Klickitat OR [COUNTIES] LIKE @Lewis OR [COUNTIES] LIKE @Lincoln OR [COUNTIES] LIKE @Mason OR [COUNTIES] LIKE @Okanogan OR [COUNTIES] LIKE @Pacific OR [COUNTIES] LIKE @PendOreille OR [COUNTIES] LIKE @Pierce OR [COUNTIES] LIKE @SanJuan OR [COUNTIES] LIKE @Skagit OR [COUNTIES] LIKE @Skamania OR [COUNTIES] LIKE @Snohomish OR [COUNTIES] LIKE @Spokane OR [COUNTIES] LIKE @Stevens OR [COUNTIES] LIKE @Thurston OR [COUNTIES] LIKE @Wahkiakum OR [COUNTIES] LIKE @WallaWalla OR [COUNTIES] LIKE @Whatcom OR [COUNTIES] LIKE @Whitman OR [COUNTIES] LIKE @Yakima) AND [Taxonomy] LIKE @Taxonomy AND ([Phenology] LIKE @Month OR [Phenology] LIKE @January OR [Phenology] LIKE @February OR [Phenology] LIKE @March OR [Phenology] LIKE @April OR [Phenology] LIKE @May OR [Phenology] LIKE @June OR [Phenology] LIKE @July OR [Phenology] LIKE @August OR [Phenology] LIKE @September OR [Phenology] LIKE @October OR [Phenology] LIKE @November OR [Phenology] LIKE @December) AND [Priority] LIKE @Priority AND [NotonWeb] = 'FALSE' ORDER BY CASE [Priority] WHEN 'Highest' THEN 1 WHEN 'Medium' THEN 2 WHEN 'Lower' THEN 3 ELSE 4 END">
         <SelectParameters>
             <asp:SessionParameter Name="Species" SessionField="Species" Type="String" />
             <asp:SessionParameter Name="Adams" SessionField="Adams" Type="String" />
@@ -109,7 +97,7 @@ Updated October 25, 2013--%>
             <asp:SessionParameter Name="Franklin" SessionField="Franklin" Type="String" />
             <asp:SessionParameter Name="Garfield" SessionField="Garfield" Type="String" />
             <asp:SessionParameter Name="Grant" SessionField="Grant" Type="String" />
-            <asp:SessionParameter Name="Grays Harbor" SessionField="Grays Harbor" Type="String" />
+            <asp:SessionParameter Name="GraysHarbor" SessionField="Grays Harbor" Type="String" />
             <asp:SessionParameter Name="Island" SessionField="Island" Type="String" />
             <asp:SessionParameter Name="Jefferson" SessionField="Jefferson" Type="String" />
             <asp:SessionParameter Name="King" SessionField="King" Type="String" />
@@ -121,9 +109,9 @@ Updated October 25, 2013--%>
             <asp:SessionParameter Name="Mason" SessionField="Mason" Type="String" />
             <asp:SessionParameter Name="Okanogan" SessionField="Okanogan" Type="String" />
             <asp:SessionParameter Name="Pacific" SessionField="Pacific" Type="String" />
-            <asp:SessionParameter Name="Pend Oreille" SessionField="Pend Oreille" Type="String" />
+            <asp:SessionParameter Name="PendOreille" SessionField="Pend Oreille" Type="String" />
             <asp:SessionParameter Name="Pierce" SessionField="Pierce" Type="String" />
-            <asp:SessionParameter Name="San Juan" SessionField="San Juan" Type="String" />
+            <asp:SessionParameter Name="SanJuan" SessionField="San Juan" Type="String" />
             <asp:SessionParameter Name="Skagit" SessionField="Skagit" Type="String" />
             <asp:SessionParameter Name="Skamania" SessionField="Skamania" Type="String" />
             <asp:SessionParameter Name="Snohomish" SessionField="Snohomish" Type="String" />
@@ -131,11 +119,11 @@ Updated October 25, 2013--%>
             <asp:SessionParameter Name="Stevens" SessionField="Stevens" Type="String" />
             <asp:SessionParameter Name="Thurston" SessionField="Thurston" Type="String" />
             <asp:SessionParameter Name="Wahkiakum" SessionField="Wahkiakum" Type="String" />
-            <asp:SessionParameter Name="Walla Walla" SessionField="Walla Walla" Type="String" />
+            <asp:SessionParameter Name="WallaWalla" SessionField="Walla Walla" Type="String" />
             <asp:SessionParameter Name="Whatcom" SessionField="Whatcom" Type="String" />
             <asp:SessionParameter Name="Whitman" SessionField="Whitman" Type="String" />
             <asp:SessionParameter Name="Yakima" SessionField="Yakima" Type="String" />
-            <asp:SessionParameter Name="Ease" SessionField="Ease" Type="String" />
+            <asp:SessionParameter Name="Taxonomy" SessionField="Ease" Type="String" />
             <asp:SessionParameter Name="Month" SessionField="Month" Type="String" />
             <asp:SessionParameter Name="January" SessionField="January" Type="String" />
             <asp:SessionParameter Name="February" SessionField="February" Type="String" />
@@ -149,7 +137,7 @@ Updated October 25, 2013--%>
             <asp:SessionParameter Name="October" SessionField="October" Type="String" />
             <asp:SessionParameter Name="November" SessionField="November" Type="String" />
             <asp:SessionParameter Name="December" SessionField="December" Type="String" />
-            <asp:SessionParameter Name="Priority (High, Medium, Low)" SessionField="Priority" Type="String" />
+            <asp:SessionParameter Name="Priority" SessionField="Priority" Type="String" />
         </SelectParameters>
     </asp:SqlDataSource>
     
