@@ -160,7 +160,7 @@ public partial class Requests : System.Web.UI.Page
 
 
             //Enter submission dates for submitted items
-            String strSubmitcommand = "UPDATE [VolunteerRequests] SET [SubmissionDate] = NOW(), [ToBeSubmitted] = 0 WHERE [ID] = @RequestID";
+            String strSubmitcommand = "UPDATE [VolunteerRequests] SET [SubmissionDate] = GETDATE(), [ToBeSubmitted] = 0 WHERE [ID] = @RequestID";
             SqlParameter paramID = new SqlParameter();
             paramID.ParameterName = "@RequestID";
             paramID.Value = grdvwSubmit.Rows[i].Cells[1].Text;
