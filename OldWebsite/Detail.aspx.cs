@@ -15,7 +15,6 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
-using System.Data.Odbc;
 using System.Data.SqlClient;
 
 public partial class _Default : System.Web.UI.Page
@@ -52,12 +51,13 @@ public partial class _Default : System.Web.UI.Page
         
         //lblMessage.Text = "Session variables: " + Session["Name"].ToString() + " VolID " + Session["VolID"].ToString() + " EOID " + Session["EO"].ToString() + " EO_Num " + Session["DetailEO_Num"].ToString() + " " + Session["DetailSpecies"].ToString() + " " + Session["DetailCounty"].ToString();
 
-        String connString = "Dsn=WORM2007";
-        System.Data.Odbc.OdbcConnection sqlconnvolunteerrequests = new System.Data.Odbc.OdbcConnection(connString);
+        String connString = System.Configuration.ConfigurationManager.ConnectionStrings["WORM2007"].ConnectionString;
+        System.Data.SqlClient.SqlConnection sqlconnvolunteerrequests = new System.Data.SqlClient.SqlConnection(connString);
 
-        System.Data.Odbc.OdbcCommand cmd = new System.Data.Odbc.OdbcCommand();
+        System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
         cmd.CommandType = CommandType.Text;
-        cmd.CommandText = "INSERT INTO VolunteerRequests (EO_ID, Vol_ID, VolName, County, Phenology, Species, EO_Num) VALUES (?,?,?,?,?,?,?)";
+        cmd.CommandText = "INSERT INTO VolunteerRequests (EO_ID, Vol_ID, VolName, County, Phenology, Species, EO_Num, Assigned, ToBeSubmitted) " + "" +
+            "VALUES (@EO_ID,@Vol_ID,@VolName,@County,@Phenology,@Species,@DetailEO_Num, 0, 0)";
         cmd.Parameters.AddWithValue("EO_ID", Session["EO"].ToString());
         cmd.Parameters.AddWithValue("Vol_ID", Session["VolID"].ToString());
         cmd.Parameters.AddWithValue("VolName", Session["Name"].ToString());
