@@ -56,8 +56,8 @@ public partial class _Default : System.Web.UI.Page
 
         System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
         cmd.CommandType = CommandType.Text;
-        cmd.CommandText = "INSERT INTO VolunteerRequests (EO_ID, Vol_ID, VolName, County, Phenology, Species, EO_Num, Assigned, ToBeSubmitted) " + "" +
-            "VALUES (@EO_ID,@Vol_ID,@VolName,@County,@Phenology,@Species,@DetailEO_Num, 0, 0)";
+        cmd.CommandText = "INSERT INTO VolunteerRequests (EO_ID, Vol_ID, VolName, County, Phenology, Species, EO_Num, FieldPartner, Assigned, ToBeSubmitted) " + "" +
+            "VALUES (@EO_ID,@Vol_ID,@VolName,@County,@Phenology,@Species,@DetailEO_Num, 0, 0, 0)";
         cmd.Parameters.AddWithValue("EO_ID", Session["EO"].ToString());
         cmd.Parameters.AddWithValue("Vol_ID", Session["VolID"].ToString());
         cmd.Parameters.AddWithValue("VolName", Session["Name"].ToString());
