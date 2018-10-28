@@ -19,7 +19,6 @@ using System.Web.UI.HtmlControls;
 using System.Net;
 using System.Net.Mail;
 using System.Data.Common;
-using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Drawing;
 
@@ -136,26 +135,24 @@ public partial class Requests : System.Web.UI.Page
         //Hide Submit form upon Send
         pnlSubmit.Visible = false;
 
-        
-        //Append volunteer request to VolunteerRequests in VolunteerOpportunities table
 
-	    String strconn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=F:/Webroot/CFRWeb/RareCare/Database/WORM.accdb;";
-        OleDbConnection conn = new OleDbConnection(strconn);
+        //Append volunteer request to VolunteerRequests in VolunteerOpportunities table
+        String strconn = System.Configuration.ConfigurationManager.ConnectionStrings["WORM2007"].ConnectionString;
+        System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(strconn);
 
         for (int i = 0; i < grdvwSubmit.Rows.Count; i++)
         {
             String strRequestcommand = "UPDATE [VolunteerOpportunities] SET [VolunteerRequests] = IIF([VolunteerRequests] IS NULL,' ',[VolunteerRequests]) + @VolInfo WHERE [EO_ID] = @EO_ID";
-            OleDbParameter paramRequest = new OleDbParameter();
+            SqlParameter paramRequest = new SqlParameter();
             paramRequest.ParameterName = "@EO_ID";
             paramRequest.Value = grdvwSubmit.Rows[i].Cells[2].Text;
-            OleDbParameter paramName = new OleDbParameter();
+            SqlParameter paramName = new SqlParameter();
             paramName.ParameterName = "@VolInfo";
             paramName.Value = DateTime.Now.ToShortDateString() + " " + lblVolName.Text + " " + grdvwSubmit.Rows[i].Cells[5].Text.Replace("&nbsp;", "").ToString() + " of " + txtTotalAssignments.Text + " USFS parking pass:" + ddlParkingPass.SelectedValue + " Discover Pass:" + ddlDiscoverPass.SelectedValue + ";";
 
-            OleDbCommand cmdRequest = new OleDbCommand(strRequestcommand, conn);
+            SqlCommand cmdRequest = new SqlCommand(strRequestcommand, conn);
             cmdRequest.Parameters.Add(paramName);
             cmdRequest.Parameters.Add(paramRequest);
-
 
             conn.Open();
             cmdRequest.ExecuteNonQuery();
