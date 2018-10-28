@@ -140,7 +140,7 @@ public partial class _Default : System.Web.UI.Page
     
     protected void txtGenus_TextChanged(object sender, EventArgs e)
     {
-        accessdatasrcSpecies.SelectCommand = "SELECT DISTINCT [Species] FROM [VolunteerOpportunities] WHERE ([Species] LIKE '%' + ? + '%') AND [NotonWeb] = FALSE ORDER BY [Species]";
+        accessdatasrcSpecies.SelectCommand = "SELECT DISTINCT [Species] FROM [VolunteerOpportunities] WHERE ([Species] LIKE '%' + ? + '%') AND [NotonWeb] = 'FALSE' ORDER BY [Species]";
         accessdatasrcSpecies.DataBind();
         ddlSpecies.DataBind();
         ddlSpecies.Items.Insert(0, new ListItem("No preference", "%"));
